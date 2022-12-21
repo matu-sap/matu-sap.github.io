@@ -1,0 +1,87 @@
+.body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.title {
+  color: #02ccba;
+}
+.header {
+  background-color:darkgray;
+  height:90px;
+}
+li {
+  list-style: none;
+}
+.header-logo {
+  font-size:35px;
+  float:left;
+  padding:20px 40px;
+}
+.header-list li {
+  float:left;
+  padding:30px 20px
+
+}
+.main {
+  padding: 100px 80px;
+}
+.copy-container h1 {
+  font-size:130px;
+}
+.copy-container h2 {
+  font-size:100px;
+}
+.copy-container span {
+  color:red
+}
+.contents {
+  height: 600px;
+  margin-top:100px;
+}
+.section-title {
+  border-bottom:5px solid gray;
+  font-size:25px;
+  padding-bottom:15px;
+  margin-bottom:50px;
+}
+.contents-item {
+  float:left;
+  margin-right:40px;
+}
+.contents-item p {
+  font-size:20px;
+  margin:10px;
+}
+.contact-form {
+  padding-top:100px;
+}
+input,textarea {
+  width: 400px;
+  margin-top:10px;
+  margin-bottom:30px;
+  padding:20px;
+  font-size:18px;
+  border:1px solid #dee7ec;
+}
+.contact-submit {
+  background-color:#dee7ec;
+  color:#889eab;
+}
+.footer {
+  background-color:darkorange;
+  height:100px;
+  padding:40px;
+  color:blue;
+}
+.footer-logo {
+  float:left;
+  font-size:30px;
+  font-weight:bold;
+}
+.footer-list {
+  float:right;
+}
+.footer-list li {
+  padding-bottom:20px;
+}
+
+
