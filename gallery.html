@@ -2,75 +2,46 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>Gallery | PHOTO STUDIO TOI</title>
+  <title>Photoworks Movie - Gallery</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <style>
-    :root {
-      --bg: #f6efe6;
-      --card: #ffffff;
-      --text-main: #3f3328;
-      --accent: #b5835a;
-      --border: #e3d5c5;
-    }
-
-    * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text-main);
+      background: #f5f5f5;
+      color: #333;
       line-height: 1.6;
     }
 
     a {
-      color: inherit;
       text-decoration: none;
+      color: inherit;
     }
 
-    /* 共通ヘッダー（index / price と揃えた版） */
+    /* 共通ヘッダー */
     header {
       position: sticky;
       top: 0;
       z-index: 10;
-      background: rgba(246,239,230,0.96);
+      background: rgba(255,255,255,0.9);
       backdrop-filter: blur(6px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid #e0e0e0;
     }
 
     .nav-inner {
-      max-width: 1080px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 12px;
     }
 
-    .brand-block {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-logo {
-      height: 40px;
-    }
-
-    .brand-text-main {
-      font-family: "Georgia", "Times New Roman", serif;
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.08em;
       font-size: 18px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .brand-text-sub {
-      font-size: 11px;
-      color: #8b7660;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
     }
 
     nav ul {
@@ -78,568 +49,308 @@
       margin: 0;
       padding: 0;
       display: flex;
-      gap: 18px;
-      font-size: 13px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+      gap: 16px;
+      font-size: 14px;
     }
 
     nav li a {
-      padding-bottom: 3px;
+      padding: 4px 0;
       border-bottom: 2px solid transparent;
     }
 
-    nav li a:hover,
-    nav li a.is-current {
-      border-bottom-color: var(--accent);
+    nav li a:hover {
+      border-bottom-color: #333;
     }
 
+    /* ページタイトル部分 */
+    .page-hero {
+      background: radial-gradient(circle at top left, #ffe9d5, #f5f5f5);
+      padding: 40px 20px 24px;
+      text-align: center;
+    }
+
+    .page-hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(24px, 3vw + 10px, 30px);
+    }
+
+    .page-hero p {
+      margin: 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* メイン */
     main {
-      max-width: 1080px;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 28px 20px 40px;
+      padding: 24px 20px 40px;
     }
 
-    .page-title {
-      font-size: 24px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .page-sub {
-      font-size: 13px;
-      color: #7b6a57;
-      margin-bottom: 22px;
-    }
-
-    .section-card {
-      background: var(--card);
-      border-radius: 18px;
-      padding: 20px 18px 24px;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.06);
-    }
-
-    /* メインタブ（Wedding / Anniversary / Studio） */
-    .tab-main-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 18px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 10px;
-    }
-
-    .tab-btn-main {
-      padding: 7px 16px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      font-size: 13px;
-      background: transparent;
-      color: #776555;
-      cursor: pointer;
-    }
-
-    .tab-btn-main.is-active {
-      background: #f0e1cf;
-      border-color: #d6bda1;
-      color: #3c2f24;
-    }
-
-    /* Anniversary内のサブタブ */
-    .tab-sub-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .tab-btn-sub {
-      padding: 5px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      font-size: 12px;
-      background: #faf5ef;
-      color: #7b6a57;
-      cursor: pointer;
-    }
-
-    .tab-btn-sub.is-active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-    }
-
-    .thumb-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .thumb-item {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #ddd;
-      aspect-ratio: 4 / 3;
-    }
-
-    .thumb-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .thumb-label {
-      position: absolute;
-      left: 8px;
-      bottom: 6px;
-      padding: 3px 8px;
-      font-size: 11px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.55);
-      color: #fff;
-    }
-
-    .note {
-      font-size: 11px;
-      color: #8b7a68;
-      margin-top: 12px;
-    }
-
-    .gallery-lead {
-      font-size: 13px;
-      color: #6c5a4a;
-      margin-bottom: 16px;
-    }
-
-    .is-hidden {
-      display: none;
-    }
-
-    @media (max-width: 768px) {
-      .nav-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-      }
-
-      nav ul {
-        flex-wrap: wrap;
-        gap: 10px;
-        font-size: 12px;
-      }
-
-      .thumb-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 520px) {
-      .thumb-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* --- Wedding ギャラリー用 --- */
-
-    .wedding-hero {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-      gap: 20px;
-      align-items: center;
-      margin-bottom: 28px;
-    }
-
-    .wedding-hero-main {
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.12);
-    }
-
-    .wedding-hero-main img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-    }
-
-    .wedding-hero-text h3 {
+    .section-title {
       font-size: 20px;
-      margin: 0 0 10px;
+      margin-bottom: 10px;
+      border-left: 4px solid #333;
+      padding-left: 8px;
     }
 
-    .wedding-hero-text p {
+    .section-lead {
       font-size: 14px;
       color: #666;
-      margin: 0 0 8px;
+      margin-bottom: 20px;
     }
 
-    .wedding-hero-text ul {
-      margin: 8px 0 0;
-      padding-left: 18px;
+    /* 動画カードグリッド */
+    .movie-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 32px;
+    }
+
+    .movie-card {
+      background: #111;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.22);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .movie-thumb {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .movie-thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .movie-body {
+      padding: 12px 14px 14px;
       font-size: 13px;
-      color: #666;
     }
 
-    .wedding-grid {
+    .movie-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .movie-meta {
+      font-size: 11px;
+      color: #ccc;
+    }
+
+    /* スチール（写真）ギャラリー */
+    .still-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
     }
 
-    .wedding-card {
-      position: relative;
+    .still-item {
       border-radius: 12px;
       overflow: hidden;
       background: #ddd;
+      position: relative;
       aspect-ratio: 4 / 3;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
 
-    .wedding-card img {
+    .still-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .wedding-card-overlay {
+    .still-label {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
-      display: flex;
-      align-items: flex-end;
-      padding: 10px;
+      left: 10px;
+      bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.55);
       color: #fff;
+      font-size: 11px;
+    }
+
+    /* 戻るボタン */
+    .back-btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: #333;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .back-btn:hover {
+      background: #555;
+    }
+
+    footer {
+      border-top: 1px solid #e0e0e0;
       font-size: 12px;
-      opacity: 0;
-      transition: opacity 0.25s ease;
+      color: #888;
+      text-align: center;
+      padding: 14px 10px 20px;
+      background: #fafafa;
+      margin-top: 20px;
     }
 
-    .wedding-card:hover .wedding-card-overlay {
-      opacity: 1;
-    }
-
-    .wedding-card-title {
-      font-weight: 600;
-      font-size: 13px;
-    }
-
-    /* スマホ */
-    @media (max-width: 768px) {
-      .wedding-hero {
+    /* スマホ用 */
+    @media (max-width: 900px) {
+      .movie-grid,
+      .still-grid {
         grid-template-columns: 1fr;
       }
 
-      .wedding-grid {
-        grid-template-columns: 1fr 1fr;
+      .page-hero {
+        padding-top: 28px;
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 13px;
       }
     }
   </style>
 </head>
-
 <body>
-<header>
-  <div class="nav-inner">
-    <div class="brand-block">
-      <img src="images/tio_logo_cgt.png" alt="Photo Studio TOI ロゴ" class="brand-logo">
-      <div>
-        <div class="brand-text-main">PHOTO STUDIO TOI</div>
-        <div class="brand-text-sub">HOTEL PHOTO STUDIO / SAPPORO GRAND HOTEL</div>
-      </div>
+  <!-- ヘッダー（indexと同じメニュー構成） -->
+  <header>
+    <div class="nav-inner">
+      <div class="logo">PhotoWorks Movie</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="service.html">SERVICE</a></li>
+          <li><a href="studio.html">STUDIO</a></li>
+          <li><a href="gallery.html">GALLERY</a></li>
+          <li><a href="price.html">PRICE</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+      </nav>
     </div>
-    <nav>
-      <ul>
-        <li><a href="index.html#top">HOME</a></li>
-        <li><a href="index.html#wedding">WEDDING</a></li>
-        <li><a href="index.html#anniv">ANNIVERSARY</a></li>
+  </header>
 
-        <!-- 今いるページなので is-current -->
-        <li><a href="gallery.html" class="is-current">GALLERY</a></li>
+  <!-- ページ見出し -->
+  <section class="page-hero">
+    <h1>Movie Gallery</h1>
+    <p>
+      実際のメモリアル・プロフィールムービーのサンプルです。<br>
+      音声ありのフルバージョンで、画面サイズや雰囲気をご確認いただけます。
+    </p>
+  </section>
 
-        <li><a href="index.html#studio">STUDIO</a></li>
-        <li><a href="index.html#photographers">PHOTOGRAPHERS</a></li>
-        <li><a href="index.html#price">PRICE</a></li>
-        <li><a href="index.html#contact">CONTACT</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <h1 class="page-title">GALLERY</h1>
-  <p class="page-sub">
-    ウェディング・アニバーサリー・スタジオ撮影の一部をご紹介します。<br>
-    実際のアルバム構成やカット数は、お客様のご要望にあわせてご提案いたします。
-  </p>
-
-  <div class="section-card">
-    <!-- メインタブ -->
-    <div class="tab-main-row">
-      <button class="tab-btn-main is-active" data-main-tab="wedding">Wedding</button>
-      <button class="tab-btn-main" data-main-tab="anniv">Anniversary</button>
-      <button class="tab-btn-main" data-main-tab="studio">Studio</button>
-    </div>
-
-    <!-- Weddingパネル -->
-    <div data-main-panel="wedding">
-      <!-- 上段：メイン写真＋テキスト -->
-      <div class="wedding-hero">
-        <div class="wedding-hero-main">
-          <img src="images/WD1.jpeg" alt="新郎新婦のポートレート">
-        </div>
-        <div class="wedding-hero-text">
-          <h3>Wedding Photography</h3>
-          <p>
-            ホテル館内での挙式・披露宴を中心に、前撮り・後撮りや
-            ロケーション撮影にも対応しています。
-          </p>
-          <p>
-            お二人らしさと会場の雰囲気を大切に、丁寧に撮影いたします。
-          </p>
-          <ul>
-            <li>挙式スナップ・披露宴スナップ</li>
-            <li>新郎新婦ポートレート・ご家族写真</li>
-            <li>前撮り・後撮り・ロケーション撮影</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- 下段：9枚グリッド -->
-      <div class="wedding-grid">
-        <div class="wedding-card">
-          <img src="images/WD14.jpeg" alt="チャペルでの挙式シーン">
-          <div class="wedding-card-overlay">
-            <div class="wedding-card-title">挙式のワンシーン</div>
-          </div>
-        </div>
-
-        <div class="wedding-card">
-          <img src="images/WD11.jpeg" alt="指輪交換のシーン">
-          <div class="wedding-card-overlay">
-            <div class="wedding-card-title">指輪交換</div>
-          </div>
-        </div>
-
-        <div class="wedding-card">
-          <img src="images/WD3.jpeg" alt="和装でのロケーションフォト">
-          <div class="wedding-card-overlay">
-            <div class="wedding-card-title">和装ロケーション</div>
-          </div>
-        </div>
-
-        <div class="wedding-card">
-          <img src="images/WD5.jpeg" alt="ブーケのアップ">
-          <div class="wedding-card-overlay">
-            <div class="wedding-card-title">ブーケ & ディテール</div>
-          </div>
-        </div>
-
-        <div class="wedding-card">
-          <img src="images/WD8.jpeg" alt="ベール姿の花嫁">
-          <div class="wedding-card-overlay">
-            <div class="wedding-card-title">花嫁ポートレート</div>
-          </div>
-        </div>
-
-        <div class="wedding-card">
-          <img src="images/WD9.jpeg" alt="夕景のシルエット">
-          <div class="wedding-card-overlay">
-            <div class="wedding-card-title">サンセットシルエット</div>
-          </div>
-        </div>
-
-        <div class="wedding-card">
-          <img src="images/WD12.jpeg" alt="寄り添う新郎新婦">
-          <div class="wedding-card-overlay">
-            <div class="wedding-card-title">ふたりの時間</div>
-          </div>
-        </div>
-
-        <div class="wedding-card">
-          <img src="images/WD15.jpeg" alt="紅葉の中の新郎新婦">
-          <div class="wedding-card-overlay">
-            <div class="wedding-card-title">季節のロケーション</div>
-          </div>
-        </div>
-
-        <div class="wedding-card">
-          <img src="images/WD7.jpeg" alt="新郎新婦の笑顔">
-          <div class="wedding-card-overlay">
-            <div class="wedding-card-title">幸せな笑顔</div>
-          </div>
-        </div>
-      </div>
-
-      <p class="note">
-        ※挙式・披露宴のスナップ撮影、前撮り・ロケーション撮影など、
-        プランにより内容が異なります。
-      </p>
-    </div>
-
-    <!-- Anniversaryパネル -->
-    <div data-main-panel="anniv" class="is-hidden">
-      <p class="gallery-lead">
-        七五三や成人式、入学・卒業、家族写真など。<br>
-        人生の節目の「今この瞬間」を、落ち着いた雰囲気の中で丁寧に残します。
+  <main>
+    <!-- ▼ 動画ギャラリー -->
+    <section>
+      <h2 class="section-title">ムービーサンプル</h2>
+      <p class="section-lead">
+        実際にココナラでご提供している作品と同等クオリティのサンプルです。<br>
+        音量にご注意のうえ、フルスクリーンでのご視聴もお試しください。
       </p>
 
-      <!-- サブタブ -->
-      <div class="tab-sub-row">
-        <button class="tab-btn-sub is-active" data-sub-tab="753">七五三</button>
-        <button class="tab-btn-sub" data-sub-tab="seijin">成人式</button>
-        <button class="tab-btn-sub" data-sub-tab="school">入学・卒業</button>
-        <button class="tab-btn-sub" data-sub-tab="family">家族写真</button>
-        <button class="tab-btn-sub" data-sub-tab="business">Business</button>
-      </div>
-
-      <!-- 七五三 -->
-      <div data-sub-panel="753">
-        <div class="thumb-grid">
-          <div class="thumb-item">
-            <img src="images/FA1-2.jpeg" alt="七五三フォト1">
-            <span class="thumb-label">七五三／3歳・5歳・7歳</span>
+      <div class="movie-grid">
+        <!-- 1. Wedding Opening / Letter -->
+        <div class="movie-card">
+          <div class="movie-thumb">
+            <!-- ★ここを今お使いの埋め込みURLに差し替えてください -->
+            <iframe
+              src="https://www.youtube.com/embed/v4zvKCxrNXs"
+              title="Wedding Letter Movie"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
           </div>
-          <div class="thumb-item">
-            <img src="images/FA1-4.jpeg" alt="七五三フォト2">
-            <span class="thumb-label">ご兄弟・ご家族とご一緒に</span>
+          <div class="movie-body">
+            <div class="movie-title">Wedding Letter Movie</div>
+            <div class="movie-meta">レタームービー / ご両親へのお手紙 × 写真</div>
           </div>
         </div>
-        <p class="note">
-          衣裳・着付け・ヘアメイクとのセットプランもご用意しております。詳しくはお問い合わせください。
-        </p>
-      </div>
 
-      <!-- 成人式 -->
-      <div data-sub-panel="seijin" class="is-hidden">
-        <div class="thumb-grid">
-          <div class="thumb-item">
-            <img src="images/FA4.jpeg" alt="成人式フォト1">
-            <span class="thumb-label">スタジオポートレート</span>
+        <!-- 2. Profile Movie -->
+        <div class="movie-card">
+          <div class="movie-thumb">
+            <iframe
+              src="https://www.youtube.com/embed/jc9TesvtCfM"
+              title="Profile Movie"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
           </div>
-          <div class="thumb-item">
-            <img src="images/FA4-1.jpeg" alt="成人式フォト2">
-            <span class="thumb-label">ロケーション撮影</span>
+          <div class="movie-body">
+            <div class="movie-title">Profile Movie</div>
+            <div class="movie-meta">プロフィールムービー / お二人の歩みを紹介</div>
           </div>
         </div>
-        <p class="note">
-          前撮り・後撮りどちらも承っております。振袖のお持込み撮影もお気軽にご相談ください。
-        </p>
-      </div>
 
-      <!-- 入学・卒業 -->
-      <div data-sub-panel="school" class="is-hidden">
-        <div class="thumb-grid">
-          <div class="thumb-item">
-            <img src="images/FA8.jpeg" alt="卒業写真">
-            <span class="thumb-label">卒業記念</span>
+        <!-- 3. Memorial / Farewell -->
+        <div class="movie-card">
+          <div class="movie-thumb">
+            <iframe
+              src="https://www.youtube.com/embed/Sa3VYGrhxF8"
+              title="Memorial & Farewell Movie"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
           </div>
-          <div class="thumb-item">
-            <img src="images/FA7.jpeg" alt="入学写真">
-            <span class="thumb-label">入学記念・ランドセル姿</span>
+          <div class="movie-body">
+            <div class="movie-title">Memorial / Farewell</div>
+            <div class="movie-meta">送別・記念ムービー / メッセージスライドショー</div>
           </div>
         </div>
-        <p class="note">
-          お一人写しはもちろん、ご家族・ごきょうだいとの撮影も承っております。
-        </p>
       </div>
+    </section>
 
-      <!-- 家族写真 -->
-      <div data-sub-panel="family" class="is-hidden">
-        <div class="thumb-grid">
-          <div class="thumb-item">
-            <img src="images/FA3.jpeg" alt="家族写真1">
-            <span class="thumb-label">ご家族写真</span>
-          </div>
-          <div class="thumb-item">
-            <img src="images/FA2.jpeg" alt="家族写真2">
-            <span class="thumb-label">記念日の一枚に</span>
-          </div>
-        </div>
-        <p class="note">
-          結婚記念日・お誕生日・ご長寿祝いなど、特別な日のご家族写真にご利用いただいております。
-        </p>
-      </div>
-
-      <!-- Business -->
-      <div data-sub-panel="business" class="is-hidden">
-        <div class="thumb-grid">
-          <div class="thumb-item">
-            <img src="images/b01.jpeg" alt="ビジネスフォト">
-            <span class="thumb-label">Corporate</span>
-          </div>
-        </div>
-        <p class="note">
-          企業様の周年事業・表彰式・役員集合写真など、用途に合わせて撮影いたします。<br>
-          出張撮影も承っておりますので、ご相談ください。
-        </p>
-      </div>
-    </div>
-
-    <!-- Studioパネル -->
-    <div data-main-panel="studio" class="is-hidden">
-      <p class="gallery-lead">
-        ホテル内にあるゆったりとしたスタジオ空間。<br>
-        ポートレートから大人数の集合写真まで、さまざまなシーンに対応いたします。
+    <!-- ▼ スチール写真サンプル（任意） -->
+    <section>
+      <h2 class="section-title">スチールイメージ</h2>
+      <p class="section-lead">
+        サムネイルや本編内で使用している写真イメージです。<br>
+        実際はお預かりしたお写真をもとに、色味や明るさを整えながら編集していきます。
       </p>
 
-      <div class="thumb-grid">
-        <div class="thumb-item">
-          <img src="images/SD1.jpeg" alt="スタジオ内観1">
-          <span class="thumb-label">スタジオ全景</span>
+      <div class="still-grid">
+        <div class="still-item">
+          <img src="sample1.jpeg" alt="Wedding Sample">
+          <div class="still-label">Anniversary</div>
         </div>
-        <div class="thumb-item">
-          <img src="images/SD2.jpeg" alt="スタジオ内観2">
-          <span class="thumb-label">ライティング設備</span>
+        <div class="still-item">
+          <img src="sample2.jpeg" alt="Graduation Sample">
+          <div class="still-label">Graduation</div>
         </div>
-        <div class="thumb-item">
-          <img src="images/SD3.jpeg" alt="ひな壇 80名対応">
-          <span class="thumb-label">最大80名までのひな壇</span>
+        <div class="still-item">
+          <img src="sample3.jpeg" alt="Farewell Sample">
+          <div class="still-label">Farewell</div>
         </div>
       </div>
+    </section>
 
-      <p class="note">
-        常設のひな壇設備により、最大80名までの集合撮影が可能です。<br>
-        社内式典・同窓会・ご親族のお集まりなど、大人数での撮影も安心しておまかせください。
-      </p>
-    </div>
+    <a href="index.html" class="back-btn">← トップページへ戻る</a>
+  </main>
 
-  </div> <!-- section-card の閉じタグ -->
-</main>
-
-<script>
-  // メインタブ切り替え
-  const mainBtns = document.querySelectorAll('.tab-btn-main');
-  const mainPanels = document.querySelectorAll('[data-main-panel]');
-
-  mainBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.mainTab;
-      mainBtns.forEach(b => b.classList.remove('is-active'));
-      mainPanels.forEach(p => p.classList.add('is-hidden'));
-      btn.classList.add('is-active');
-      document
-        .querySelector(`[data-main-panel="${target}"]`)
-        .classList.remove('is-hidden');
-    });
-  });
-
-  // Anniversary内のサブタブ切り替え
-  const subBtns = document.querySelectorAll('.tab-btn-sub');
-  const subPanels = document.querySelectorAll('[data-sub-panel]');
-
-  subBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.subTab;
-      subBtns.forEach(b => b.classList.remove('is-active'));
-      subPanels.forEach(p => p.classList.add('is-hidden'));
-      btn.classList.add('is-active');
-      document
-        .querySelector(`[data-sub-panel="${target}"]`)
-        .classList.remove('is-hidden');
-    });
-  });
-</script>
+  <footer>
+    &copy; Photo Works. All Rights Reserved.
+  </footer>
 </body>
 </html>
